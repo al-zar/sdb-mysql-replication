@@ -1,0 +1,44 @@
+version: '3.1'
+ 
+services:
+  dbm:
+    image: mysql:8
+    container_name: mysql-master
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpass
+    ports:
+      - "60010:3306"
+    volumes:
+      - ./dbdata/10:/var/lib/mysql
+      - ./dbdata/10/home:/tmp
+  dbs:
+    image: mysql:8
+    container_name: mysql-slave
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbpass
+    ports:
+      - "60011:3306"
+    volumes:
+      - ./dbdata/11:/var/lib/mysql
+      - ./dbdata/11/home:/tmp
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin
+#    container_name: reppma
+#    links:
+#      - dbm
+#      - dbs
+#    environment:
+#      PMA_HOST: db
+#      PMA_PORT: 3306
+#      PMA_ARBITRARY: 1
+#    restart: always
+#    ports:
+#      - 60009:80
+#volumes:
+#  dbdata:./
