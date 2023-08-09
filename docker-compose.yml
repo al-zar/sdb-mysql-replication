@@ -27,18 +27,3 @@ services:
     volumes:
       - ./dbdata/11:/var/lib/mysql
       - ./dbdata/11/home:/tmp
-#  phpmyadmin:
-#    image: phpmyadmin/phpmyadmin
-#    container_name: reppma
-#    links:
-#      - dbm
-#      - dbs
-#    environment:
-#      PMA_HOST: db
-#      PMA_PORT: 3306
-#      PMA_ARBITRARY: 1
-#    restart: always
-#    ports:
-#      - 60009:80
-#volumes:
-#  dbdata:./
